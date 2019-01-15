@@ -6,10 +6,16 @@ import { Provider } from 'react-redux';
 import { rootReducer } from './store/reducers';
 
 import App from './components/App/App';
+import { loadState, saveState } from './store/localStorage';
 
 import './index.css';
 
-const store = createStore(rootReducer);
+const persistedState = loadState();
+const store = createStore(rootReducer, persistedState);
+
+store.subscribe(() => {
+    saveState(store.getState());
+});
 
 ReactDOM.render(
     <Provider store={store}>

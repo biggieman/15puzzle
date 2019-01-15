@@ -26,7 +26,7 @@ export const generateGrid = (emptyCoord) => {
             }
 
             // populating by random value
-            grid[r][c].value = plain.splice(getRandomInt(0, plain.length), 1);
+            grid[r][c].value = plain.splice(getRandomInt(0, plain.length), 1)[0];
         }
     }
 

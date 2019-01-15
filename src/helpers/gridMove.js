@@ -1,8 +1,14 @@
 import { findByCoord } from './gridFinder';
 
 export const getMovedGrid = (grid, fromCoord, toCoord) => {
-    // clone grid
-    var gridNew = JSON.parse(JSON.stringify(grid));
+    let gridNew;
+
+    try {
+        // clone grid
+        gridNew = JSON.parse(JSON.stringify(grid));
+    } catch {
+        return grid;
+    }
 
     let fromPosition = findByCoord(gridNew, fromCoord);
     let toPosition = findByCoord(gridNew, toCoord);
