@@ -12,5 +12,5 @@
 
 .grid                       {}
 .grid-item                  {background-color: #e4b95a; border: 1px solid #fe6c53; cursor: pointer; z-index: 2;}
-.grid-item.grid-item--empty {background-color: #fff; border: 0;}
-.grid-item__inner           {font-size: 2rem;}
+.grid-item.grid-item--empty {background-color: #fff; border: 0; z-index: 1;}
+.grid-item__inner           {font-size: 1.5rem;}

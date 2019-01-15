@@ -2,23 +2,13 @@ import React from 'react';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
-import { doMove, doNewGame, doReset, doTick } from './../../store/actions';
+import { doMove, doNewGame, doReset } from './../../store/actions';
 
 import './App.css';
 
 class App extends React.Component {
-    componentDidMount() {
-        this.timer = setInterval(() => {
-            this.props.doTick();
-        }, 1000);
-    }
-
-    componentWillUnmount() {
-        clearInterval(this.timer);
-    }
-
     render() {
-        const {grid, moves, time, doMove, doNewGame, doReset} = this.props;
+        const {grid, moves, doMove, doNewGame, doReset} = this.props;
 
         const getStyle = (position) => {
             return {
@@ -32,7 +22,7 @@ class App extends React.Component {
                 <div>
                 <button onClick={() => {doNewGame()}}>New game</button> <button onClick={() => {doReset()}}>Reset</button>
                 </div>
-                Moves: {moves}, time: {time}
+                Moves: {moves}
                 <div className="container">
                     <div className="grid">
                         {grid.map((cols, row) => {
@@ -61,8 +51,7 @@ class App extends React.Component {
 const putStateToProps = (state) => {
     return {
         grid: state.grid,
-        moves: state.moves,
-        time: state.time
+        moves: state.moves
     };
 };
 
@@ -70,8 +59,7 @@ const putActionsToProps = (dispatch) => {
     return {
         doMove: bindActionCreators(doMove, dispatch),
         doNewGame: bindActionCreators(doNewGame, dispatch),
-        doReset: bindActionCreators(doReset, dispatch),
-        doTick: bindActionCreators(doTick, dispatch)
+        doReset: bindActionCreators(doReset, dispatch)
     };
 };
 

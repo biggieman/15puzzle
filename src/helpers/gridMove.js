@@ -1,12 +1,21 @@
-export default (grid, from, to) => {
-    let gridNew = grid.slice().map(row => row.slice())
+import { findByCoord } from './gridFinder';
 
-    let [rowFrom, colFrom] = from;
-    let [rowTo, colTo] = to;
+export const getMovedGrid = (grid, fromCoord, toCoord) => {
+    // clone grid
+    var gridNew = JSON.parse(JSON.stringify(grid));
 
-    let tmp = gridNew[rowFrom][colFrom].coord;
-    gridNew[rowFrom][colFrom].coord = gridNew[rowTo][colTo].coord;
-    gridNew[rowTo][colTo].coord = tmp;
+    let fromPosition = findByCoord(gridNew, fromCoord);
+    let toPosition = findByCoord(gridNew, toCoord);
+
+    // swap
+    if (fromPosition && toPosition) {
+        let [rowFrom, colFrom] = fromPosition;
+        let [rowTo, colTo] = toPosition;
+
+        let tmp = gridNew[rowFrom][colFrom].coord.slice(0);
+        gridNew[rowFrom][colFrom].coord = gridNew[rowTo][colTo].coord.slice(0);
+        gridNew[rowTo][colTo].coord = tmp;
+    }
 
     return gridNew;
 };

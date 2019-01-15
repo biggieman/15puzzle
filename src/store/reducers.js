@@ -1,43 +1,47 @@
-import { ACTION_MOVE, ACTION_NEW_GAME, ACTION_RESET, ACTION_TICK } from './actions';
-import getMoved from './../helpers/gridMove';
+import { ACTION_MOVE, ACTION_NEW_GAME, ACTION_RESET} from './actions';
+import { isEmptyCoordPossibleToMove } from './../helpers/gridFinder';
+import { getMovedGrid } from './../helpers/gridMove';
 import generateGridState from './../helpers/gridGenerator';
 
 const initialState = {
     started: false,
-    time: 0,
-    moves: 0,
+    moves: 0
+};
+
+let startState = {
+    ...initialState,
     ...generateGridState()
 };
 
-export const rootReducer = (state = initialState, action) => {
+export const rootReducer = (state = startState, action) => {
     switch (action.type) {
         case ACTION_MOVE:
             let fromCoord = action.payload;
             let toCoord = state.emptyCoord;
 
-            console.log('empty coord: ', toCoord);
+            if (isEmptyCoordPossibleToMove(fromCoord, toCoord)) {
+                return {
+                    ...state,
+                    started: true,
+                    grid: getMovedGrid(state.grid, fromCoord, toCoord),
+                    emptyCoord: fromCoord,
+                    moves: state.moves + 1
+                };
+            }
 
-            return {
-                ...state,
-                started: true,
-                grid: getMoved(state.grid, fromCoord, toCoord),
-                emptyCoord: fromCoord,
-                moves: state.moves + 1
-            };
+            return {...state};
+
         case ACTION_NEW_GAME:
-            return {
+            startState = {
                 ...initialState,
                 started: false,
                 ...generateGridState()
             };
+
+            return startState;
         case ACTION_RESET:
-            return {...initialState};
-        case ACTION_TICK:
-            return {
-                ...state,
-                time: state.started && state.time + 1 || state.time
-            };
+            return {...startState};
         default:
-            return {...state};
+            return state;
     }
 };

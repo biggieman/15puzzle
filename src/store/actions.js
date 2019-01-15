@@ -1,5 +1,4 @@
 export const ACTION_MOVE = 'ACTION_MOVE';
-export const ACTION_TICK = 'ACTION_TICK';
 export const ACTION_NEW_GAME = 'ACTION_NEW_GAME';
 export const ACTION_RESET = 'ACTION_RESET';
 
@@ -20,13 +19,6 @@ export const doNewGame = () => {
 export const doReset = () => {
     return {
         type: ACTION_RESET,
-        payload: null
-    };
-};
-
-export const doTick = () => {
-    return {
-        type: ACTION_TICK,
         payload: null
     };
 };
