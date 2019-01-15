@@ -2,7 +2,7 @@ import React from 'react';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
-import { doMove, doReset, doTick } from './../../store/actions';
+import { doMove, doNewGame, doReset, doTick } from './../../store/actions';
 
 import './App.css';
 
@@ -18,34 +18,40 @@ class App extends React.Component {
     }
 
     render() {
-        const {grid, moves, time, doMove, doReset} = this.props;
+        const {grid, moves, time, doMove, doNewGame, doReset} = this.props;
+
+        const getStyle = (position) => {
+            return {
+                top: position[0] * 60 + 'px',
+                left: position[1] * 60 + 'px'
+            };
+        };
 
         return (
-            <div className="App">
+            <div className="app">
                 <div>
-                    <button onClick={() => {doReset()}}>Reset</button>
+                <button onClick={() => {doNewGame()}}>New game</button> <button onClick={() => {doReset()}}>Reset</button>
                 </div>
                 Moves: {moves}, time: {time}
-                <div className="grid">
-                    {grid.map((cols, row) => {
-                        return (
-                            <div key={'row' + row} className="grid-row">
-                                {cols.map((value, col) => {
-                                    return (
-                                        <div
-                                            key={'col' + col}
-                                            className={'grid-item ' + (!value ? 't-empty' : '')}
-                                            onClick={() => {
-                                                value && doMove([row, col]);
-                                            }}
-                                            >
-                                            {value || ''}
-                                        </div>
-                                    );
-                                })}
-                            </div>
-                        );
-                    })}
+                <div className="container">
+                    <div className="grid">
+                        {grid.map((cols, row) => {
+                            return cols.map((item, col) => {
+                                return (
+                                    <div
+                                        key={'item:' + row + ':'+ col}
+                                        className={'grid-item ' + (!item.value ? 'grid-item--empty' : '')}
+                                        style={getStyle(item.coord)}
+                                        onClick={() => {
+                                            item.value && doMove(item.coord);
+                                        }}
+                                        >
+                                        <span className="grid-item__inner">{item.value || ''}</span>
+                                    </div>
+                                );
+                            });
+                        })}
+                    </div>
                 </div>
             </div>
         );
@@ -63,6 +69,7 @@ const putStateToProps = (state) => {
 const putActionsToProps = (dispatch) => {
     return {
         doMove: bindActionCreators(doMove, dispatch),
+        doNewGame: bindActionCreators(doNewGame, dispatch),
         doReset: bindActionCreators(doReset, dispatch),
         doTick: bindActionCreators(doTick, dispatch)
     };

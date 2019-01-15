@@ -1,5 +1,16 @@
-.grid                    {display: flex; flex-direction: column;}
-.grid .grid-row          {display: flex; flex-direction: row;}
-.grid .grid-item         {flex: 0 0 50px; height: 50px; border: 1px solid #000;}
+.app                        {text-align: center;}
 
-.grid .grid-item:not(.t-empty) {background-color: cadetblue;}
+.container                  {width: calc(60px * 4);  margin: 0 auto;}
+
+/* main */
+.grid                       {position: relative; width: calc(60px * 4); height: calc(60px * 4);}
+.grid-item                  {position: absolute; left: 0; top: 0; width: 60px; height: 60px; transition: left .3s ease-in-out, top .3s ease-in-out; display: flex; justify-content: center; align-items: center; box-sizing: border-box;}
+.grid-item::before          {content: ""; display: block; padding-top: 100%;}
+
+/* other */
+.container                  {border: 1px solid #7f5c3e; padding: 3px;}
+
+.grid                       {}
+.grid-item                  {background-color: #e4b95a; border: 1px solid #fe6c53; cursor: pointer; z-index: 2;}
+.grid-item.grid-item--empty {background-color: #fff; border: 0;}
+.grid-item__inner           {font-size: 2rem;}

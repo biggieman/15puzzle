@@ -1,44 +1,43 @@
-import { ACTION_MOVE, ACTION_RESET, ACTION_TICK } from './actions';
+import { ACTION_MOVE, ACTION_NEW_GAME, ACTION_RESET, ACTION_TICK } from './actions';
+import getMoved from './../helpers/gridMove';
+import generateGridState from './../helpers/gridGenerator';
 
 const initialState = {
-    grid: [],
+    started: false,
     time: 0,
-    moves: 0
+    moves: 0,
+    ...generateGridState()
 };
-
-function getRandomInt(min, max) {
-    return Math.floor(Math.random() * (max - min)) + min;
-  }
-
-let emptyPosition = [getRandomInt(1, 5), getRandomInt(1, 5)];
-
-let counter = 1;
-for (let r = 1; r < 5; r++) {
-    let row = [];
-    for (let c = 1; c < 5; c++) {
-        if (emptyPosition.length && emptyPosition[0] === r && emptyPosition[1] === c) {
-            emptyPosition = [];
-
-            row.push(0);
-
-            continue;
-        }
-
-        row.push(counter++);
-    }
-
-    initialState.grid.push(row);
-}
 
 export const rootReducer = (state = initialState, action) => {
     switch (action.type) {
         case ACTION_MOVE:
-            return {...state, moves: state.moves + 1};
+            let fromCoord = action.payload;
+            let toCoord = state.emptyCoord;
+
+            console.log('empty coord: ', toCoord);
+
+            return {
+                ...state,
+                started: true,
+                grid: getMoved(state.grid, fromCoord, toCoord),
+                emptyCoord: fromCoord,
+                moves: state.moves + 1
+            };
+        case ACTION_NEW_GAME:
+            return {
+                ...initialState,
+                started: false,
+                ...generateGridState()
+            };
         case ACTION_RESET:
-            return initialState;
+            return {...initialState};
         case ACTION_TICK:
-            return {...state, time: state.time + 1};
+            return {
+                ...state,
+                time: state.started && state.time + 1 || state.time
+            };
         default:
-            return state;
+            return {...state};
     }
 };
