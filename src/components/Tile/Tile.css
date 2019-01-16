@@ -1,0 +1,6 @@
+.tile         {position: absolute; left: 0; top: 0; width: 60px; height: 60px; transition: left .3s ease-in-out, top .3s ease-in-out; display: flex; justify-content: center; align-items: center; box-sizing: border-box;}
+.tile:before  {content: ""; display: block; padding-top: 100%;}
+
+.tile             {background-color: #e4b95a; border: 1px solid #fe6c53; cursor: pointer; z-index: 2;}
+.tile.tile--empty {background-color: #fff; border: 0; z-index: 1;}
+.tile__inner      {font-size: 1.5rem;}
