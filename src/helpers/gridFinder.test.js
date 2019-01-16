@@ -3,6 +3,7 @@ import {
     isCoordPossibleToMove,
     getPossibleCoordsToMove,
     isEmptyCoordPossibleToMove,
+    isRightCoordPosition,
     findIndexByCoord
 } from './gridFinder';
 
@@ -46,6 +47,22 @@ it('isEmptyCoordPossibleToMove returns true if emptyCoord is possible to move to
     expect(isEmptyCoordPossibleToMove([1, 1], [0, 2])).toBe(false);
     expect(isEmptyCoordPossibleToMove([1, 1], [2, 0])).toBe(false);
     expect(isEmptyCoordPossibleToMove([1, 1], [2, 2])).toBe(false);
+});
+
+it('isRightCoordPosition return true if tile on needed place, else return false', () => {
+    let rMax = 2;
+    let cMax = 2;
+
+    let grid = [
+        {coord: [0, 0], value: 1}, {coord: [0, 1], value: 2},
+        {coord: [1, 0], value: 3}, {coord: [1, 1], value: 0}
+    ];
+
+    grid.forEach(item => {
+        expect(isRightCoordPosition(item.coord, item.value, rMax, cMax)).toBe(true);
+    });
+
+    expect(isRightCoordPosition([0, 0], 2, rMax, cMax)).toBe(false);
 });
 
 it('findIndexByCoord return position by exist coord or null ', () => {

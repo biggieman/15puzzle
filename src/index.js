@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
+import { ActionCreators } from 'redux-undo'
 import rootReducer from './store/reducers';
 
 import App from './components/App/App';
@@ -13,8 +14,17 @@ import './index.css';
 const persistedState = loadState();
 const store = createStore(rootReducer, persistedState);
 
+// clear history at begin
+store.dispatch(ActionCreators.clearHistory());
+
 store.subscribe(() => {
-    saveState(store.getState());
+    const state = store.getState();
+
+    if (state.present.win || !state.present.started) {
+        clearState();
+    } else {
+        saveState(state);
+    }
 });
 
 ReactDOM.render(

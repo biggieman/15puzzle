@@ -10,7 +10,7 @@ const Header = ({onNewGameClick, onResetClick, moves}) => {
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
             <div className="navbar-brand-wrapper">
-                <a className="navbar-brand" href="#">15 Puzzle</a>
+                <span className="navbar-brand">15 Puzzle</span>
             </div>
             <div>
                 <button

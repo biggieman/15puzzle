@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { doMove } from './../../store/actions';
 
 import Tile from './../Tile/Tile';
+import Winner from './../Winner/Winner';
 
 import './Tiles.css';
 
@@ -22,6 +23,7 @@ const Tiles = ({tiles, onTileClick}) => {
                     );
                 })}
             </div>
+            <Winner/>
         </div>
     );
 };

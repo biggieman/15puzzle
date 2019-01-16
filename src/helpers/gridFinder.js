@@ -26,6 +26,14 @@ export const isEmptyCoordPossibleToMove = (fromCoord, emptyCoord) => {
     return res && res[0] ? true : false;
 };
 
+export const isRightCoordPosition = (coord, value, rMax = 4, cMax = 4) => {
+    if (!value) {
+        return coord[0] === rMax - 1 && coord[1] === cMax - 1;
+    }
+
+    return value === (coord[0] * cMax + coord[1] + 1);
+}
+
 export const findIndexByCoord = (grid, coord) => {
     return grid.findIndex(item => coordsCompare(item.coord, coord));
 };

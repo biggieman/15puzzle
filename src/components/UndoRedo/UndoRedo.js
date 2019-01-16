@@ -3,12 +3,12 @@ import { bindActionCreators } from 'redux'
 import { ActionCreators as UndoActionCreators } from 'redux-undo'
 import { connect } from 'react-redux'
 
-const UndoRedo = ({canUndo, canRedo, onUndo, onRedo}) => (
+const UndoRedo = ({canUndo, canRedo, onUndo, onRedo, win}) => (
     <div className="p-3">
-        <button className="btn btn-outline-dark mx-1" onClick={onUndo} disabled={!canUndo} title="Undo">
+        <button className="btn btn-outline-dark mx-1" onClick={onUndo} disabled={!canUndo || win} title="Undo">
             <i className="material-icons">undo</i> Undo
         </button>
-        <button className="btn btn-outline-dark mx-1" onClick={onRedo} disabled={!canRedo} title="Redo">
+        <button className="btn btn-outline-dark mx-1" onClick={onRedo} disabled={!canRedo || win} title="Redo">
             <i className="material-icons">redo</i> Redo
         </button>
     </div>
@@ -16,7 +16,8 @@ const UndoRedo = ({canUndo, canRedo, onUndo, onRedo}) => (
 
 const mapStateToProps = (state) => ({
     canUndo: state.past.length > 0,
-    canRedo: state.future.length > 0
+    canRedo: state.future.length > 0,
+    win: state.present.win
 })
 
 const mapActionsToProps = (dispatch) => {
