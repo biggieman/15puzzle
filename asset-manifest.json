@@ -1,13 +1,13 @@
 {
-  "main.css": "/15puzzle/static/css/main.d3c6bccd.chunk.css",
-  "main.js": "/15puzzle/static/js/main.f99e883a.chunk.js",
-  "main.js.map": "/15puzzle/static/js/main.f99e883a.chunk.js.map",
-  "static/js/1.21a1d4c9.chunk.js": "/15puzzle/static/js/1.21a1d4c9.chunk.js",
-  "static/js/1.21a1d4c9.chunk.js.map": "/15puzzle/static/js/1.21a1d4c9.chunk.js.map",
+  "main.css": "/15puzzle/static/css/main.e0fd25cd.chunk.css",
+  "main.js": "/15puzzle/static/js/main.1c0ee526.chunk.js",
+  "main.js.map": "/15puzzle/static/js/main.1c0ee526.chunk.js.map",
+  "static/js/1.ca1bba06.chunk.js": "/15puzzle/static/js/1.ca1bba06.chunk.js",
+  "static/js/1.ca1bba06.chunk.js.map": "/15puzzle/static/js/1.ca1bba06.chunk.js.map",
   "runtime~main.js": "/15puzzle/static/js/runtime~main.e7f9c7f5.js",
   "runtime~main.js.map": "/15puzzle/static/js/runtime~main.e7f9c7f5.js.map",
-  "static/css/main.d3c6bccd.chunk.css.map": "/15puzzle/static/css/main.d3c6bccd.chunk.css.map",
+  "static/css/main.e0fd25cd.chunk.css.map": "/15puzzle/static/css/main.e0fd25cd.chunk.css.map",
   "index.html": "/15puzzle/index.html",
-  "precache-manifest.a933a2bb92eb17cc176f58f8ef6d8c53.js": "/15puzzle/precache-manifest.a933a2bb92eb17cc176f58f8ef6d8c53.js",
+  "precache-manifest.f82af9d1d4033ecbafef53f4e2e10467.js": "/15puzzle/precache-manifest.f82af9d1d4033ecbafef53f4e2e10467.js",
   "service-worker.js": "/15puzzle/service-worker.js"
 }
