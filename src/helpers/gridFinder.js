@@ -26,8 +26,6 @@ export const isEmptyCoordPossibleToMove = (fromCoord, emptyCoord) => {
     return res && res[0] ? true : false;
 };
 
-export const findByCoord = (grid, coord) => {
-    let index = grid.findIndex(item => coordsCompare(item.coord, coord));
-
-    return index !== -1 ? index : null;
+export const findIndexByCoord = (grid, coord) => {
+    return grid.findIndex(item => coordsCompare(item.coord, coord));
 };

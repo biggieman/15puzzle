@@ -46,14 +46,14 @@ class App extends React.Component {
     }
 }
 
-const putStateToProps = (state) => {
+const mapStateToProps = (state) => {
     return {
         grid: state.grid,
         moves: state.moves
     };
 };
 
-const putActionsToProps = (dispatch) => {
+const mapActionsToProps = (dispatch) => {
     return {
         doMove: bindActionCreators(doMove, dispatch),
         doNewGame: bindActionCreators(doNewGame, dispatch),
@@ -61,4 +61,4 @@ const putActionsToProps = (dispatch) => {
     };
 };
 
-export default connect(putStateToProps, putActionsToProps)(App);
+export default connect(mapStateToProps, mapActionsToProps)(App);

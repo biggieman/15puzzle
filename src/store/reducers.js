@@ -19,12 +19,14 @@ export const rootReducer = (state = startState, action) => {
             let fromCoord = action.payload;
             let toCoord = state.emptyCoord;
 
-            if (isEmptyCoordPossibleToMove(fromCoord, toCoord)) {
+            let grid = isEmptyCoordPossibleToMove(fromCoord, toCoord) && getMovedGrid(state.grid, fromCoord, toCoord);
+
+            if (grid) {
                 return {
                     ...state,
                     started: true,
-                    grid: getMovedGrid(state.grid, fromCoord, toCoord),
                     emptyCoord: fromCoord,
+                    grid: grid,
                     moves: state.moves + 1
                 };
             }
@@ -39,8 +41,10 @@ export const rootReducer = (state = startState, action) => {
             };
 
             return startState;
+
         case ACTION_RESET:
             return {...startState};
+
         default:
             return state;
     }

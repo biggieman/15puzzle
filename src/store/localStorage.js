@@ -20,3 +20,9 @@ export const saveState = (state) => {
         localStorage.setItem(STORAGE_KEY, serializedState);
     } catch (e) {}
 };
+
+export const clearState = () => {
+    try {
+        localStorage.removeItem(STORAGE_KEY);
+    } catch (e) {}
+};

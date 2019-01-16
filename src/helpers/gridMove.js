@@ -1,24 +1,19 @@
-import { findByCoord } from './gridFinder';
+import { findIndexByCoord } from './gridFinder';
 
 export const getMovedGrid = (grid, fromCoord, toCoord) => {
-    let gridNew;
+    let gridNew = grid.slice(0).map(item => Object.assign({}, item));
 
-    try {
-        // clone grid
-        gridNew = JSON.parse(JSON.stringify(grid));
-    } catch {
-        return grid;
+    let fromPosition = findIndexByCoord(gridNew, fromCoord);
+    let toPosition = findIndexByCoord(gridNew, toCoord);
+
+    if (fromPosition === -1 || toPosition === -1) {
+        return;
     }
 
-    let fromPosition = findByCoord(gridNew, fromCoord);
-    let toPosition = findByCoord(gridNew, toCoord);
-
-    // swap
-    if (fromPosition && toPosition) {
-        let tmp = gridNew[fromPosition].coord.slice(0);
-        gridNew[fromPosition].coord = gridNew[toPosition].coord.slice(0);
-        gridNew[toPosition].coord = tmp;
-    }
+    // swap coords
+    let tmp = gridNew[fromPosition].coord.slice(0);
+    gridNew[fromPosition].coord = gridNew[toPosition].coord.slice(0);
+    gridNew[toPosition].coord = tmp;
 
     return gridNew;
 };

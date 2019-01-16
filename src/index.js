@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import { rootReducer } from './store/reducers';
 
 import App from './components/App/App';
-import { loadState, saveState } from './store/localStorage';
+import { loadState, saveState, clearState } from './store/localStorage';
 
 import './index.css';
 
@@ -14,7 +14,13 @@ const persistedState = loadState();
 const store = createStore(rootReducer, persistedState);
 
 store.subscribe(() => {
-    saveState(store.getState());
+    const state = store.getState();
+
+    if (state.started) {
+        saveState(state);
+    } else {
+        clearState();
+    }
 });
 
 ReactDOM.render(

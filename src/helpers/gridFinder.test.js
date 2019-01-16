@@ -3,7 +3,7 @@ import {
     isCoordPossibleToMove,
     getPossibleCoordsToMove,
     isEmptyCoordPossibleToMove,
-    findByCoord
+    findIndexByCoord
 } from './gridFinder';
 
 it('coordsCompare compare coords correctly', () => {
@@ -48,16 +48,20 @@ it('isEmptyCoordPossibleToMove returns true if emptyCoord is possible to move to
     expect(isEmptyCoordPossibleToMove([1, 1], [2, 2])).toBe(false);
 });
 
-it('findByCoord return position by exist coord or null ', () => {
+it('findIndexByCoord return position by exist coord or null ', () => {
     let grid = [
         {coord: [0, 0], value: 1}, {coord: [0, 1], value: 2}, {coord: [1, 2], value: 3},
-        {coord: [1, 0], value: 4}, {coord: [1, 1], value: 5}, {coord: [0, 2], value: 6}
+        {coord: [1, 0], value: 4}, {coord: [1, 1], value: 5}, {coord: [0, 2], value: 6},
+        {coord: [2, 0], value: 7}, {coord: [2, 1], value: 8}, {coord: [2, 2], value: 9}
     ];
 
-    expect(findByCoord(grid, [1, 2])).toBe(2);
-    expect(findByCoord(grid, [0, 2])).toEqual(5);
+    expect(findIndexByCoord(grid, [0, 0])).toBe(0);
+    expect(findIndexByCoord(grid, [1, 2])).toBe(2);
+    expect(findIndexByCoord(grid, [0, 2])).toBe(5);
 
-    expect(findByCoord(grid, [1, 1])).toEqual(4);
+    expect(findIndexByCoord(grid, [1, 1])).toBe(4);
 
-    expect(findByCoord(grid, [5, 6])).toBe(null);
+    expect(findIndexByCoord(grid, [2, 2])).toBe(8);
+
+    expect(findIndexByCoord(grid, [5, 6])).toBe(-1);
 });
