@@ -1,13 +1,9 @@
 import { generateGrid } from './gridGenerator';
 
 it('generateGrid contains all digits with emptyone', () => {
-    let grid = generateGrid([0, 0], 4, 4);
+    let grid = generateGrid(4, 4);
 
-    expect(grid[0][0].value).toBe(0);
-
-    let digits = grid.map(cols => {
-        return cols.map(item => item.value);
-    })
+    let digits = grid.map(item => item.value)
     .reduce((sum, cols) => sum.concat(cols), [])
     .sort((a, b) => a - b);
 
@@ -16,8 +12,8 @@ it('generateGrid contains all digits with emptyone', () => {
 });
 
 it('generateGrid random generated', () => {
-    let grid = generateGrid([0, 0], 4, 4);
+    let grid = generateGrid(4, 4);
 
-    expect(generateGrid([0, 0], 4, 4)).not.toEqual(grid);
-    expect(generateGrid([0, 0], 4, 4)).not.toEqual(grid);
+    expect(generateGrid(4, 4)).not.toEqual(grid);
+    expect(generateGrid(4, 4)).not.toEqual(grid);
 });

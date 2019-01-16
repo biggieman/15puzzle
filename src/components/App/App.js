@@ -25,21 +25,19 @@ class App extends React.Component {
                 Moves: {moves}
                 <div className="container">
                     <div className="grid">
-                        {grid.map((cols, row) => {
-                            return cols.map((item, col) => {
-                                return (
-                                    <div
-                                        key={'item:' + row + ':'+ col}
-                                        className={'grid-item ' + (!item.value ? 'grid-item--empty' : '')}
-                                        style={getStyle(item.coord)}
-                                        onClick={() => {
-                                            item.value && doMove(item.coord);
-                                        }}
-                                        >
-                                        <span className="grid-item__inner">{item.value || ''}</span>
-                                    </div>
-                                );
-                            });
+                        {grid.map((item, index) => {
+                            return (
+                                <div
+                                    key={'item:' + index}
+                                    className={'grid-item ' + (!item.value ? 'grid-item--empty' : '')}
+                                    style={getStyle(item.coord)}
+                                    onClick={() => {
+                                        item.value && doMove(item.coord);
+                                    }}
+                                    >
+                                    <span className="grid-item__inner">{item.value || ''}</span>
+                                </div>
+                            );
                         })}
                     </div>
                 </div>

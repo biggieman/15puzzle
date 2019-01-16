@@ -15,12 +15,9 @@ export const getMovedGrid = (grid, fromCoord, toCoord) => {
 
     // swap
     if (fromPosition && toPosition) {
-        let [rowFrom, colFrom] = fromPosition;
-        let [rowTo, colTo] = toPosition;
-
-        let tmp = gridNew[rowFrom][colFrom].coord.slice(0);
-        gridNew[rowFrom][colFrom].coord = gridNew[rowTo][colTo].coord.slice(0);
-        gridNew[rowTo][colTo].coord = tmp;
+        let tmp = gridNew[fromPosition].coord.slice(0);
+        gridNew[fromPosition].coord = gridNew[toPosition].coord.slice(0);
+        gridNew[toPosition].coord = tmp;
     }
 
     return gridNew;

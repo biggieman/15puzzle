@@ -50,14 +50,14 @@ it('isEmptyCoordPossibleToMove returns true if emptyCoord is possible to move to
 
 it('findByCoord return position by exist coord or null ', () => {
     let grid = [
-        [{coord: [0, 0], value: 1}, {coord: [0, 1], value: 2}, {coord: [1, 2], value: 3}],
-        [{coord: [1, 0], value: 4}, {coord: [1, 1], value: 5}, {coord: [0, 2], value: 6}]
+        {coord: [0, 0], value: 1}, {coord: [0, 1], value: 2}, {coord: [1, 2], value: 3},
+        {coord: [1, 0], value: 4}, {coord: [1, 1], value: 5}, {coord: [0, 2], value: 6}
     ];
 
-    expect(findByCoord(grid, [1, 2])).toEqual([0, 2]);
-    expect(findByCoord(grid, [0, 2])).toEqual([1, 2]);
+    expect(findByCoord(grid, [1, 2])).toBe(2);
+    expect(findByCoord(grid, [0, 2])).toEqual(5);
 
-    expect(findByCoord(grid, [1, 1])).toEqual([1, 1]);
+    expect(findByCoord(grid, [1, 1])).toEqual(4);
 
     expect(findByCoord(grid, [5, 6])).toBe(null);
 });
