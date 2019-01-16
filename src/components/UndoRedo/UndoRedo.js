@@ -4,7 +4,7 @@ import { ActionCreators as UndoActionCreators } from 'redux-undo'
 import { connect } from 'react-redux'
 
 const UndoRedo = ({canUndo, canRedo, onUndo, onRedo}) => (
-    <div>
+    <div className="undo-redo">
         <button onClick={onUndo} disabled={!canUndo}>Undo</button>
         <button onClick={onRedo} disabled={!canRedo}>Redo</button>
     </div>

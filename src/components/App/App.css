@@ -1,4 +1,4 @@
-.app                        {text-align: center;}
+.app                        {flex: 1;}
 
 .container                  {width: calc(60px * 4);  margin: 0 auto;}
 .container                  {border: 1px solid #7f5c3e; padding: 3px;}

@@ -1,4 +1,8 @@
 import React from 'react';
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+
+import { doMove } from './../../store/actions';
 
 import Tile from './../Tile/Tile';
 
@@ -12,7 +16,7 @@ const Tiles = ({tiles, onTileClick}) => {
                     <Tile
                         key={'item:' + index}
                         {...item}
-                        onClick={() => onTileClick(item)}
+                        onClick={() => item.value && onTileClick(item.coord)}
                     />
                 );
             })}
@@ -20,4 +24,12 @@ const Tiles = ({tiles, onTileClick}) => {
     );
 };
 
-export default Tiles;
+const mapStateToProps = (state) => ({
+    tiles: state.present.grid
+});
+
+const mapActionsToProps = (dispatch) => ({
+    onTileClick: bindActionCreators(doMove, dispatch)
+});
+
+export default connect(mapStateToProps, mapActionsToProps)(Tiles);
