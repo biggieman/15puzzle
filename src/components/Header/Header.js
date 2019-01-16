@@ -4,23 +4,35 @@ import { connect } from 'react-redux'
 
 import { doNewGame, doReset } from './../../store/actions';
 
-import UndoRedo from './../UndoRedo/UndoRedo';
-
 import './Header.css';
 
 const Header = ({onNewGameClick, onResetClick, moves}) => {
     return (
-        <div className="header">
-            <div className="main-buttons">
-                <button onClick={() => {onNewGameClick()}}>New game</button>
-                <button onClick={() => {onResetClick()}}>Reset</button>
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div className="navbar-brand-wrapper">
+                <a className="navbar-brand" href="#">15 Puzzle</a>
             </div>
-            <div className="info">
+            <div>
+                <button
+                    className="btn btn-outline-light mx-1"
+                    onClick={() => {onNewGameClick()}}
+                    title="New Game"
+                >
+                    <i className="material-icons">power_settings_new</i> <span className="d-none d-sm-inline">New Game</span>
+                </button>
+                <button
+                    className="btn btn-outline-light mx-1"
+                    onClick={() => {onResetClick()}}
+                    title="Reset Game"
+                >
+                    <i className="material-icons">clear</i> <span className="d-none d-sm-inline">Reset Game</span>
+                </button>
+            </div>
+            <div className="mr-auto"></div>
+            <span className="navbar-text">
                 Moves: {moves}
-            </div>
-
-            <UndoRedo/>
-        </div>
+            </span>
+        </nav>
     );
 };
 

@@ -10,16 +10,18 @@ import './Tiles.css';
 
 const Tiles = ({tiles, onTileClick}) => {
     return (
-        <div className="tiles">
-            {tiles.map((item, index) => {
-                return (
-                    <Tile
-                        key={'item:' + index}
-                        {...item}
-                        onClick={() => item.value && onTileClick(item.coord)}
-                    />
-                );
-            })}
+        <div className="tiles-wrapper rounded">
+            <div className="tiles">
+                {tiles.map((item, index) => {
+                    return (
+                        <Tile
+                            key={'item:' + index}
+                            {...item}
+                            onClick={() => item.value && onTileClick(item.coord)}
+                        />
+                    );
+                })}
+            </div>
         </div>
     );
 };
